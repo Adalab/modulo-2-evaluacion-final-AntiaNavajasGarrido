@@ -1,7 +1,19 @@
-body {
-  padding: 2rem;
-  height: 100vh;
-  background-image: url('../images/bg-adalab.png');
-  background-color: $color-bg;
-  font-family: $font-main;
+:root {
+  --roboto-slab: 'Roboto Slab', serif;
+  --roboto: 'Roboto Serif', serif;
+}
+
+body,
+html {
+   margin: 0;
+   padding: 0;
+ }
+
+.titleCards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: darkblue;
+  font-weight: bolder;
+  font-size: large;
 }

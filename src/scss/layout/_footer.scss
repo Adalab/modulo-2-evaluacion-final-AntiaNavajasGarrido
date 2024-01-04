@@ -1,8 +1,13 @@
-.page__footer {
+.footer{
+  font-size: medium;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100vw;
   padding: 1rem;
-  color: $color-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkblue;
+  color: white;
 }
