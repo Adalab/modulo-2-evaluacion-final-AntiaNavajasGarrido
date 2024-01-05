@@ -17,17 +17,19 @@
     <section class="form">
       <div>
         <form>
-          <input class="input js-input-charactersName" type="text" placeholder="Example: Alice" required />
-          <button class="searchButton js-searchButton">Search</button>
+          <input class="input js-input-charactersName" id="filterInput" type="text" placeholder="Example: Alice" required />
+          <button class="searchButton" onclick="filterCharacters()">Search</button>
         </form>
       </div>
     </section>
   </header>
   <main>
-
-    <section class="disneyCards">
-      <p class="titleCards">Characters 💙</p>
-      <ul></ul>
+    <h1 class="title">Characters 💙</h1>
+    <section id="favoritesContainer">
+      <div id="favoritesList"></div>
+    </section>
+    <section id="disneyCharactersContainer">
+      <!-- aquí van las cartas de los personajes -->
     </section>
   </main>
   <footer class="footer">
