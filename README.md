@@ -4,4 +4,4 @@ He creado un buscador de personajes Disney utilizando la API https://api.disneya
 
 - https://disneyapi.dev/docs/
 
-##Thanks to https://github.com/manuCastrillonM/ for making such a great API.
+## Thanks to https://github.com/manuCastrillonM/ for making such a great API.
