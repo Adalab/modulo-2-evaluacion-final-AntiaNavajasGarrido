@@ -15,9 +15,40 @@ html {
   justify-content: center;
   color: darkblue;
   font-weight: bolder;
-  font-size: large;
+  font-size: 25px;
+  margin-bottom: 25px;
+}
+
+#disneyCharactersContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+
+.characterName{
+  color: darkblue;
+  font-weight: bolder;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .characterCard{
-  
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  background-color: lightcyan;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 10%;
+  box-shadow: 10px 10px 10px rgba(14, 0, 0, 0.171);
+
+}
+
+.characterImage{
+  height: 250px;
+  width: 300px;
 }

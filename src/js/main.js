@@ -9,37 +9,37 @@ document.addEventListener('DOMContentLoaded', loadCharacters);
 
 
 async function loadCharacters() {
-  const apiUrl = '//api.disneyapi.dev/character';
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    const apiUrl = '//api.disneyapi.dev/character';
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-    const disneyCharacters = data.data;
+        const disneyCharacters = data.data;
 
-    showCharactersInHTML(disneyCharacters);
-  } catch (error) {
-    console.error('Error al obtener datos de la API:', error);
-  }
+        showCharactersInHTML(disneyCharacters);
+    } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+    }
 }
 
 //CAMBIANDO HTML PARA MOSTRAR LAS CARTAS
 
 function showCharactersInHTML(characters) {
-  const container = document.getElementById('disneyCharactersContainer');
-  const favoritosList = document.getElementById('favoritosList');
+    const container = document.getElementById('disneyCharactersContainer');
 
-  characters.forEach(character => {
-    //USO DEL OPERADOR ? PARA SABER SI TIENE IMAGEN, SI NO CARGARÁ LA ESPECIFICADA EN EL EJERCICIO - DISAPPOINTED BUT NOT SURPRISED: NO ME FUNCIONA
-    // const imageUrl = personaje.imageUrl ? personaje.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
-    const characterHTML = `
+
+    characters.forEach(character => {
+        //USO DEL OPERADOR ? PARA SABER SI TIENE IMAGEN, SI NO CARGARA LA ESPECIFICADA EN EL EJERCICIO - DISAPPOINTED BUT NOT SURPRISED: NO ME FUNCIONA
+        // const imageUrl = personaje.imageUrl ? personaje.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
+        const characterHTML = `
       <div class="characterCard">
-        <h2>${character.name}</h2>
-        <img src="${character.imageUrl}" alt="${character.name}">
+        <h3 class="characterName">${character.name}</h3>
+        <img class="characterImage" src="${character.imageUrl}" alt="${character.name}">
       </div>
     `;
 
-    container.innerHTML += characterHTML;
-  });
+        container.innerHTML += characterHTML;
+    });
 
 }
 
@@ -47,19 +47,25 @@ function showCharactersInHTML(characters) {
 
 //FUNCION PARA PODER FILTRAR PERSONAJES
 
-function filterCharacters() {
-  const filterInput = document.getElementById('filterInput');
-  const searchTerm = filterInput.value.toLowerCase();
+document.addEventListener('DOMContentLoaded', function () {
+    const searchButton = document.querySelector('.searchButton');
 
-  const characterCards = document.querySelectorAll('.characterCard');
+    searchButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Evitar que el formulario se envíe
 
-  characterCards.forEach(card => {
-    const characterName = card.querySelector('h2').textContent.toLowerCase();
+        const filterInput = document.getElementById('filterInput');
+        const searchTerm = filterInput.value.toLowerCase();
 
-    if (characterName.includes(searchTerm)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
+        const characterCards = document.querySelectorAll('.characterCard');
+
+        characterCards.forEach(card => {
+            const characterName = card.querySelector('h2').textContent.toLowerCase();
+
+            if (characterName.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            };
+        });
+    });
+});
