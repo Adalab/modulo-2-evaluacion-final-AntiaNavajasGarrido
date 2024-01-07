@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const characterCards = document.querySelectorAll('.characterCard');
 
         characterCards.forEach(card => {
-            const characterName = card.querySelector('h2').textContent.toLowerCase();
+            const characterName = card.querySelector('h3').textContent.toLowerCase();
 
             if (characterName.includes(searchTerm)) {
                 card.style.display = 'block';
