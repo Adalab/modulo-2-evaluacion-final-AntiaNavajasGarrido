@@ -6,7 +6,7 @@ console.log('>> Ready :)');
 // EVENTO PARA CARGAR TODOS LOS PERSONAJES
 
 document.addEventListener('DOMContentLoaded', loadCharacters);
-const favoriteCharacters = [];
+const favoriteCharacters = JSON.parse(localStorage.getItem('favoriteCharacters')) || [];;
 
 
 async function loadCharacters() {
@@ -30,7 +30,7 @@ function showCharactersInHTML(characters) {
 
 
     characters.forEach(character => {
-        //USO DEL OPERADOR ? PARA SABER SI TIENE IMAGEN, SI NO CARGARA LA ESPECIFICADA EN EL EJERCICIO - DISAPPOINTED BUT NOT SURPRISED: NO ME FUNCIONA
+        //USO DEL OPERADOR ? PARA SABER SI TIENE IMAGEN, SI NO CARGARA LA ESPECIFICADA EN EL EJERCICIO
         const imageUrl = character.imageUrl ? character.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
         const characterHTML = `
       <div class="characterCard">
@@ -44,34 +44,60 @@ function showCharactersInHTML(characters) {
     const characterCards = document.querySelectorAll('.characterCard');
 
     characterCards.forEach(card => {
-     card.addEventListener('click', () => {
-     addToFavorites(card);
-  });
-});
+        card.addEventListener('click', () => {
+            addToFavorites(card, characters);
+        });
+    });
 
 }
 
 //FUNCIONES PARA MOSTRAR LOS FAVORITOS
 
 
-function addToFavorites(card) {
-const characterName = card.querySelector('.characterName').textContent;
-const isAlreadyFavorited = favoriteCharacters.includes(characterName);
+function addToFavorites(card, characters) {
+    const characterName = card.querySelector('.characterName').textContent;
+    const isAlreadyFavorited = favoriteCharacters.includes(characterName);
 
-if (!isAlreadyFavorited) {
-    favoriteCharacters.push(characterName);
+    if (!isAlreadyFavorited) {
+        favoriteCharacters.push(characterName);
 
-    // Mostrar personaje favorito en la sección de favoritos
-    const favoriteContainer = document.getElementById('favoriteCharactersContainer');
-    const favoriteCharacterHTML = `
-      <div class="favoriteCharacter">
-        <h3 class="characterName">${characterName}</h3>
-        <img class="characterImage" src="${character.imageUrl}" alt="${character.name}">
-      </div>
-    `;
-    favoriteContainer.innerHTML += favoriteCharacterHTML;
-  }
+        // Guardar en localStorage
+        localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteCharacters));
+
+        const favoriteContainer = document.getElementById('favoriteCharactersContainer');
+        const character = characters.find(char => char.name === characterName);
+        const imageUrl = character.imageUrl ? character.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
+        const favoriteCharacterHTML = `
+          <div class="favoriteCharacter">
+            <h3 class="characterName">${characterName}</h3>
+            <img class="characterImage" src="${imageUrl}" alt="${character.name}">
+          </div>
+        `;
+        favoriteContainer.innerHTML += favoriteCharacterHTML;
+    }
 }
+
+
+function loadFavoritesFromLocalStorage() {
+    const favoriteContainer = document.getElementById('favoriteCharactersContainer');
+
+    favoriteCharacters.forEach(characterName => {
+        const character = character.find(char => char.name === characterName);
+        const imageUrl = character.imageUrl ? character.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
+        const favoriteCharacterHTML = `
+          <div class="favoriteCharacter">
+            <h3 class="characterName">${characterName}</h3>
+            <img class="characterImage" src="${imageUrl}" alt="${character.name}">
+          </div>
+        `;
+        favoriteContainer.innerHTML += favoriteCharacterHTML;
+    });
+    loadFavoritesFromLocalStorage();
+}
+
+//LLAMO A LA FUNCION PARA PINTAR LOS FAVORITOS AL RECARGAR LA PÁGINA
+
+
 
 //FUNCION PARA PODER FILTRAR PERSONAJES
 
