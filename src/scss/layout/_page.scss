@@ -17,12 +17,13 @@ html {
   font-weight: bolder;
   font-size: 25px;
   margin-bottom: 25px;
+
 }
 
 #disneyCharactersContainer{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
 }
 
 .characterName{
@@ -45,10 +46,18 @@ html {
   margin-right: 15px;
   border-radius: 10%;
   box-shadow: 10px 10px 10px rgba(14, 0, 0, 0.171);
-
+  width: 500px;
 }
 
 .characterImage{
   height: 250px;
   width: 300px;
 }
+
+main{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  position: relative;
+}
+
