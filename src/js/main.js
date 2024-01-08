@@ -7,7 +7,7 @@ console.log('>> Ready :)');
 
 document.addEventListener('DOMContentLoaded', loadCharacters);
 const favoriteCharacters = [];
-const characterCards = document.querySelectorAll('.characterCard');
+
 
 async function loadCharacters() {
     const apiUrl = '//api.disneyapi.dev/character?pageSize=50';
@@ -31,27 +31,28 @@ function showCharactersInHTML(characters) {
 
     characters.forEach(character => {
         //USO DEL OPERADOR ? PARA SABER SI TIENE IMAGEN, SI NO CARGARA LA ESPECIFICADA EN EL EJERCICIO - DISAPPOINTED BUT NOT SURPRISED: NO ME FUNCIONA
-        // const imageUrl = character.imageUrl ? character.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
+        const imageUrl = character.imageUrl ? character.imageUrl : 'https://via.placeholder.com/210x295/ffffff/555555/?text=Disney';
         const characterHTML = `
       <div class="characterCard">
         <h3 class="characterName">${character.name}</h3>
-        <img class="characterImage" src="${character.imageUrl}" alt="${character.name}">
+        <img class="characterImage" src="${imageUrl}" alt="${character.name}">
       </div>
     `;
-
         container.innerHTML += characterHTML;
     });
+
+    const characterCards = document.querySelectorAll('.characterCard');
+
+    characterCards.forEach(card => {
+     card.addEventListener('click', () => {
+     addToFavorites(card);
+  });
+});
 
 }
 
 //FUNCIONES PARA MOSTRAR LOS FAVORITOS
 
-
-characterCards.forEach(card => {
-  card.addEventListener('click', () => {
-    addToFavorites(card);
-  });
-});
 
 function addToFavorites(card) {
 const characterName = card.querySelector('.characterName').textContent;

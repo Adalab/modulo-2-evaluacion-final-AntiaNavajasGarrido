@@ -24,6 +24,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   position: relative;
+  width: 60vw;
 }
 
 .characterName{
@@ -57,7 +58,9 @@ html {
 main{
   display: flex;
   justify-content: space-between;
-  width: 50%;
   position: relative;
 }
 
+#favoriteCharactersContainer{
+  width: 40vw;
+}
